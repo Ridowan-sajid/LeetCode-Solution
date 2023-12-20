@@ -48,8 +48,6 @@ class Solution {
                     j=mid-1;
                 }else if(nums[mid]<nums[mid-1]){
                     j=mid-1;
-                }else if(nums[mid]<nums[mid+1]){
-                    i=mid+1;
                 }
             }
 

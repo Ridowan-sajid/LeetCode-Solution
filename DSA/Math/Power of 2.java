@@ -8,6 +8,9 @@ class Solution {
             if(ans==n){
                 return true;
             }
+            if(ans>Integer.MAX_VALUE/2){
+                return false;
+            }
             ans=ans*2;
         }
         return false;

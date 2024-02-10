@@ -23,20 +23,13 @@ class Node{
         return tail;
     }
 
-    public static void insertAtPosition(Node head,Node tail,int position, int d){
+    public static Node insertAtPosition(Node head,Node tail,int position, int d){
         //If position is 0.
         if(position==0){
-            insertAtHead(head,d);
-            return;
+            return insertAtHead(head,d);
         }
 
         Node temp = head;
-
-        //if position is last.
-        if(temp.next==null){
-            insertAtTail(tail,d);
-            return;
-        }
 
         int count=0;
         while(count<position-1){
@@ -44,12 +37,18 @@ class Node{
             count++;
         }
 
+        //if position is last.
+        if(temp.next==null){
+            insertAtTail(tail,d);
+            return head;
+        }
+
         Node newOne=new Node(d);
 
         newOne.next=temp.next;
         temp.next=newOne;
 
-        //return head;
+        return head;
     }
 
     public static Node deleteNode(int position, Node head){
@@ -92,7 +91,7 @@ public class Main {
 
         Node n2=Node.insertAtHead(n1,10);
         Node n3=Node.insertAtHead(n2,5);
-        Node.insertAtPosition(n3,tail2,5,35);
+        n3=Node.insertAtPosition(n3,tail2,3,35);
 
         n3=Node.deleteNode(2,n3);
         Node.printLinkedList(n3);

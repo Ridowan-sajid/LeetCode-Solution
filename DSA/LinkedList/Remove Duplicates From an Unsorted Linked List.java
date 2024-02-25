@@ -20,23 +20,19 @@ import java.io.*;
 public class Solution {
 	
 	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
-        LinkedListNode<Integer> temp1=head;
-        while(temp1!=null){
-            LinkedListNode<Integer> prev=temp1;
-            LinkedListNode<Integer> temp2=temp1.next;
-            while(temp2!=null){
-                if(temp1.data==temp2.data){
-                    prev.next=temp2.next;
-                    temp2=temp2.next;
-                }else{
-                    prev=temp2;
-                    temp2=temp2.next;
-                }
+        if(head==null)return head;
+        Map<Integer,Boolean> visited=new HashMap<>();
+        LinkedListNode<Integer> temp=head;
+        visited.put(temp.data,true);
+        while(temp!=null && temp.next!=null){
+            if(visited.containsKey(temp.next.data) && visited.get(temp.next.data)==true){
+                temp.next=temp.next.next;
+            }else{
+                visited.put(temp.next.data,true);
+                temp=temp.next;
             }
-            temp1=temp1.next;
         }
         return head;
-        
 	}
 
 }

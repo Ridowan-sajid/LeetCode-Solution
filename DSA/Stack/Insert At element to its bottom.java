@@ -1,21 +1,28 @@
-import java.util.* ;
-import java.io.*; 
-public class Solution 
-{
-  public static Stack<Integer> solve(Stack <Integer> myStack, int x){
-        if(myStack.isEmpty()){
-          myStack.push(x);
-          return myStack;
-        }
-        int n=myStack.peek();
-        myStack.pop();
-        solve(myStack, x);
-        myStack.push(n);
+import java.util.Stack;
 
-        return myStack;
+public class Solution {
+	  public static void insertBottom(Stack <Integer> stack, int x){
+        if(stack.isEmpty()){
+          stack.push(x);
+          return;
+        }
+        int n=stack.peek();
+        stack.pop();
+        insertBottom(stack, x);
+        stack.push(n);
   }
-  public static Stack<Integer> pushAtBottom(Stack <Integer> myStack, int x) 
-  {
-    return solve(myStack, x);
-  }
+    public static void reverse(Stack<Integer> stack){
+		if(stack.isEmpty()){
+			return;
+		}
+		int n=stack.peek();
+		stack.pop();
+		reverse(stack);
+		insertBottom(stack, n);
+
+	}
+	public static void reverseStack(Stack<Integer> stack) {
+		reverse(stack);
+	}
+
 }
